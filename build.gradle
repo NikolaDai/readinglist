@@ -1,18 +1,21 @@
 buildscript {
     ext {
+        //notice that in the book of "springboot in action", the springboot version is 1.3.0
         springBootVersion = '2.0.4.RELEASE'
     }
     repositories {
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         mavenCentral()
     }
     dependencies {
+        //depend on Spring Boot plugin
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
+apply plugin: 'org.springframework.boot' //apply spring boot plugin
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.manning'

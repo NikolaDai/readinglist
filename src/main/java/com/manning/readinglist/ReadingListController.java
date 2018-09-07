@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+
+//pay attention that the english version of "spring boot in action", page 44, the URL should be localhost:8080/"authorname"
 @Controller
-@RequestMapping("/readingList")
+@RequestMapping("/")
 public class ReadingListController {
     private ReadingListRepository readingListRepository;
 
@@ -20,7 +22,7 @@ public class ReadingListController {
     }
 
     @RequestMapping(value = "/{reader}", method= RequestMethod.GET)
-    public String readerBooks(@PathVariable("reader") String reader,
+    public String readersBooks(@PathVariable("reader") String reader,
                               Model model){
         List<Book> readingList = readingListRepository.findByReader(reader);
 
@@ -28,6 +30,7 @@ public class ReadingListController {
             model.addAttribute("books", readingList);
         }
 
+        //resolving the corresponding template
         return "readingList";
     }
 
@@ -35,7 +38,7 @@ public class ReadingListController {
     public String addToReadingList(@PathVariable("reader") String reader, Book book){
         book.setReader(reader);
         readingListRepository.save(book);
-        return "redirect:/readingList/{reader}";
+        return "redirect:/{reader}";
     }
 }
 

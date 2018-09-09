@@ -15,10 +15,13 @@ import java.util.List;
 @RequestMapping("/")
 public class ReadingListController {
     private ReadingListRepository readingListRepository;
+    private AmazonProperties amazonProperties;
 
     @Autowired
-    public ReadingListController(ReadingListRepository readingListRepository) {
+    public ReadingListController(ReadingListRepository readingListRepository,
+                                 AmazonProperties amazonProperties) {
         this.readingListRepository = readingListRepository;
+        this.amazonProperties = amazonProperties;
     }
 
     @RequestMapping(value = "/{reader}", method= RequestMethod.GET)
@@ -26,8 +29,11 @@ public class ReadingListController {
                               Model model){
         List<Book> readingList = readingListRepository.findByReader(reader);
 
+        //绑定前台显示的数据内容，bind the data shown in the front-end.
         if(readingList !=null){
             model.addAttribute("books", readingList);
+            model.addAttribute("reader", reader);
+            model.addAttribute("amazonID", amazonProperties.getAssociateId());
         }
 
         //resolving the corresponding template

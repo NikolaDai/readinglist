@@ -5,7 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity //designating this class as a JPA entity
+//designating this class as a JPA entity
+@Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //entity's entity and its value will be automated provided.

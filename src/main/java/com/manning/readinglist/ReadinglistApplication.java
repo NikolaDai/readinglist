@@ -16,14 +16,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 * ,@ComponentScan and @EnableAutoConfiguration instead of @SpringBootApplication.
 * */
 @SpringBootApplication
-public class ReadinglistApplication  extends WebMvcConfigurerAdapter {
-
+//public class ReadinglistApplication  extends WebMvcConfigurerAdapter {
+public class ReadinglistApplication{
     public static void main(String[] args) {
         SpringApplication.run(ReadinglistApplication.class, args);
     }
 
+    //
+    /*
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/readingList");
     }
+    */
 }
